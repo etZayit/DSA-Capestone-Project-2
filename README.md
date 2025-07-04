@@ -1,89 +1,84 @@
 # DSA-Capestone-Project-2
 Analysis of sales and order data for Kultra Mega Store (KMS),
 
-# Case Scenerrio I
+# Case Scenerio I
 1. Which product category had the highest sales?
-- SQL Query
-     SELECT
-     product_category,
-     SUM(sales) AS total_sales
-     FROM
-     public.orders
-     GROUP BY
-     product_category
-     ORDER BY
-     total_sales DESC
-     LIMIT 1;
-  Result: 
-[Uploading 1. Pr"product_category","total_sales"
+- **SQL Query**
+  
+       SELECT
+       product_category,
+       SUM(sales) AS total_sales
+       FROM
+       public.orders
+       GROUP BY
+       product_category
+       ORDER BY
+       total_sales DESC
+       LIMIT 1;
+  Result: [Uploading 1. Pr"product_category","total_sales"
 "Technology","5984248.1820"
 oduct category with highest sales.csv…]()
 
 2. What are the Top 3 and Bottom 3 regions in terms of sales?
-- **Top 3**
-- SQL Query
-  SELECT
-  region,
-  SUM(sale) AS total_sales
-  FROM
-  public.orders
-  GROUP BY
-  region
-  ORDER BY
-  total_sales DESC
-  LIMIT 3;
+- **SQL Query Top 3**
+  
+       SELECT
+       region,
+       SUM(sale) AS total_sales
+       FROM
+       public.orders
+       GROUP BY
+       region
+       ORDER BY
+       total_sales DESC
+       LIMIT 3;
+- **Bottom 3**
 
-- Result:[Uploadi"region","total_sales"
+        SELECT
+       region,
+       SUM(sale) AS total_sales
+       FROM
+       public.orders
+       GROUP BY
+       region
+       ORDER BY
+       total_sales DESC
+       LIMIT 3;
+- Result: [Uploadi"region","total_sales"
 "West","3597549.2755"
 "Ontario","3063212.4795"
 "Prarie","2837304.6015"
 ng 2. Top 3 Regions (Highest Sales).csv…]()
 
-
-- **Bottom 3**
-- SQL Query
-  SELECT
-  region,
-  SUM(sale) AS total_sales
-  FROM
-  public.orders
-  GROUP BY
-  region
-  ORDER BY
-  total_sales DESC
-  LIMIT 3;
-
-- Result:
    
 3. What were the total sales of appliances in Ontario?
-- SQL Query
-  SELECT
-  SUM(sales) AS total_sales_appliances_ontario
-  FROM
-  public.orders
-  WHERE
-  product_category = 'Appliances'--
-  AND province = 'Ontario'
-
-- Result: 
-  [Uploading 3. Tot"total_sales_appliances_ontario"
+- **SQL Query**
+  
+       SELECT
+       SUM(sales) AS total_sales_appliances_ontario
+       FROM
+       public.orders
+       WHERE
+       product_category = 'Appliances'--
+       AND province = 'Ontario'
+- Result: [Uploading 3. Tot"total_sales_appliances_ontario"
 "202346.84"
 al sales of appliances in Ontario.csv…]()
 
 4. Advise the management of KMS on what to do to increase the revenue from the bottom
 10 customers
-- SQL Query
-  SELECT
-  customer_name,
-  SUM(sale) AS total_customer_sales
-  FROM
-  public.orders
-  GROUP BY
-  customer_name
-  ORDER BY
-  total_customer_sales ASC
-  LIMIT 10;
-
+- **SQL Query**
+  
+       SELECT
+       customer_name,
+       SUM(sale) AS total_customer_sales
+       FROM
+       public.orders
+       GROUP BY
+       customer_name
+       ORDER BY
+       total_customer_sales ASC
+       LIMIT 10;
 -Result:[Uploadin"customer_name","total_customer_sales"
 "Jeremy Farry","85.72"
 "Natalie DeCherney","125.9"
@@ -97,53 +92,40 @@ al sales of appliances in Ontario.csv…]()
 "Mark Hamilton","450.99"
 g 4. Identify the Bottom 10 Customers by Sales.csv…]()
 
-
 5. KMS incurred the most shipping cost using which shipping method
-- SQL Query
-     SELECT
-     ship_mode,
-     SUM(shipping_cost) AS total_shipping_cost_incurred
-     FROM
-     public.orders
-     GROUP BY
-     ship_mode
-     ORDER BY
-     total_shipping_cost_incurred DESC
-     LIMIT 1;
+- **SQL Query**
   
-- Result: 
-[Uploading 5. Mo"ship_mode","total_shipping_cost_incurred"
+          SELECT
+          ship_mode,
+          SUM(shipping_cost) AS total_shipping_cost_incurred
+          FROM
+          public.orders
+          GROUP BY
+          ship_mode
+          ORDER BY
+          total_shipping_cost_incurred DESC
+          LIMIT 1;
+- Result: [Uploading 5. Mo"ship_mode","total_shipping_cost_incurred"
 "Delivery Truck","51971.94"
 st expensive shipping cost method.csv…]()
-
 
 # Case Scenario II
 6. Who are the most valuable customers, and what products or services do they typically
 purchase?
-- **Most Valuable Customer**
-- SQL Query
-  SELECT
-  customer_name,
-  SUM(sale) AS total_customer_sales
-  FROM
-  public.orders
-  GROUP BY
-  customer_name
-  ORDER BY
-  total_customer_sales ASC
-  LIMIT 5;
-
-- Result: [Uploading "customer_name","total_customer_sales"
-"Emily Phan","117124.438"
-"Deborah Brumfield","97433.1355"
-"Roy Skaria","92542.1530"
-"Sylvia Foulston","88875.7575"
-"Grant Carroll","88417.0025"
-6. Most valuable cutomers.csv…]()
-
-
-- **Typical Purchase**
-- SQL Query
+- **SQL Query Most Valuable Customer**
+  
+       SELECT
+       customer_name,
+       SUM(sale) AS total_customer_sales
+       FROM
+       public.orders
+       GROUP BY
+       customer_name
+       ORDER BY
+       total_customer_sales ASC
+       LIMIT 5;
+**SQL Query Typical Purchase**
+   
      SELECT
      product_category,
      SUM(sales) AS total_category_sales_for_customer,
@@ -157,86 +139,86 @@ purchase?
      product_category
      ORDER BY
      customer_name,
-     total_category_sales_for_customer DESC;
-  
-- Result:
+     total_category_sales_for_customer DESC;  
+- Result: [Uploading "customer_name","total_customer_sales"
+"Emily Phan","117124.438"
+"Deborah Brumfield","97433.1355"
+"Roy Skaria","92542.1530"
+"Sylvia Foulston","88875.7575"
+"Grant Carroll","88417.0025"
+6. Most valuable cutomers.csv…]()
 
 7. Which small business customer had the highest sales?
-- SQL Query
-  SELECT
-  customer_name,
-  SUM(sale) AS total_customer_sales
-  FROM
-  public.orders
-  WHERE
-  customer_segment = 'Small Business'
-  GROUP BY
-  customer_name
-  ORDER BY
-  total_customer_sales ASC
-  LIMIT 1;
-
-- Result: 
- [Uploading 7. Small business "customer_name","total_customer_sales"
+- **SQL Query**
+  
+       SELECT
+       customer_name,
+       SUM(sale) AS total_customer_sales
+       FROM
+       public.orders
+       WHERE
+       customer_segment = 'Small Business'
+       GROUP BY
+       customer_name
+       ORDER BY
+       total_customer_sales ASC
+       LIMIT 1;
+- Result:  [Uploading 7. Small business "customer_name","total_customer_sales"
 "Dennis Kane","75967.5905"
 owners with highest sales.csv…]()
 
-  
 8. Which Corporate Customer placed the most number of orders in 2009 – 2012?
-- SQL Query
-  SELECT
-  customer_name,
-  COUNT(order-id) AS total_ordes-placed
-  FROM
-  public.orders
-  WHERE
-  customer_segment = 'Corporate'
-  AND order_date BETWEEN '2009-01-01' AND '2012-12-31'
-  GROUP BY
-  customer_name
-  ORDER BY
-  total_orders-placed DESC
-  LIMIT 1;
-
+- **SQL Query**
+  
+       SELECT
+       customer_name,
+       COUNT(order-id) AS total_ordes-placed
+       FROM
+       public.orders
+       WHERE
+       customer_segment = 'Corporate'
+       AND order_date BETWEEN '2009-01-01' AND '2012-12-31'
+       GROUP BY
+       customer_name
+       ORDER BY
+       total_orders-placed DESC
+       LIMIT 1;
 - Result:[Uploading 8. Co"customer_name","total_orders_placed"
 "Adam Hart","27"
 rporate customer with the most orders.csv…]()
 
- 
 9. Which consumer customer was the most profitable one?
-- SQL Query
-  SELECT
-  customer_name,
-  SUM(profit) AS total_customer_profit
-  FROM
-  public.orders
-  WHERE
-  customer_segment = 'Consumer'
-  GROUP BY
-  customer_name
-  ORDER BY
-  total_customer_profit DESC
-  LIMIT 1;
-
+- **SQL Query**
+  
+       SELECT
+       customer_name,
+       SUM(profit) AS total_customer_profit
+       FROM
+       public.orders
+       WHERE
+       customer_segment = 'Consumer'
+       GROUP BY
+       customer_name
+       ORDER BY
+       total_customer_profit DESC
+       LIMIT 1;
 - Result: [Uploading"customer_name","total_customer_profit"
 "Emily Phan","34005.44"
  9. Most profitable consumer customer.csv…]()
 
- 
 10. Which customer returned items, and what segment do they belong to?
-- SQL Query
-  SELECT DISTINCT
-  o.customer_name,
-  o.customer_segment
-  FROM
-  public.orders AS o
-  JOIN
-  public.order-status AS os ON o.order-id = os.order-id
-  WHERE
-  os.status = 'Returned';
+- **SQL Query**
   
-- Result: 
- [Uploading 10. Custome"customer_name","customer_segment"
+       SELECT DISTINCT
+       o.customer_name,
+       o.customer_segment
+       FROM
+       public.orders AS o
+       JOIN
+       public.order-status AS os ON o.order-id = os.order-id
+       WHERE
+       os.status = 'Returned';
+- Result: [Uploading 10. Custome"customer_name","customer_segment"
 "Edward Nazzal","Home Office"
 "Cindy Chapman","Corporate"
 "Henry Goldwyn","Small Business"
@@ -661,23 +643,22 @@ rs that returned items and segment they belong to.csv…]()
 11. If the delivery truck is the most economical but the slowest shipping method and
 Express Air is the fastest but the most expensive one, do you think the company
 appropriately spent shipping costs based on the Order Priority
-- SQL Query
-     SELECT
-     order-priority,
-     ship_mode,
-     SUM(shipping_cost) AS total_shipping_cost_for_priority,
-     COUNT(order-id) AS number_of_orders_for_prority_ship_mode
-     FROM
-     public.orders
-     GROUP BY
-     order-priority,
-     ship_mode
-     ORDER BY
-     order-priority ASC
-     total_shipping_cost_for_priority DESC;
+- **SQL Query**
   
-- Result: 
- [Uploading 11. Ordering by cost DESC to see highest cost methods.csv"order_priority","ship_mode","total_shipping_cost_for_priority","number_of_orders_for_priority_ship_mode"
+          SELECT
+          order-priority,
+          ship_mode,
+          SUM(shipping_cost) AS total_shipping_cost_for_priority,
+          COUNT(order-id) AS number_of_orders_for_prority_ship_mode
+          FROM
+          public.orders
+          GROUP BY
+          order-priority,
+          ship_mode
+          ORDER BY
+          order-priority ASC
+          total_shipping_cost_for_priority DESC;
+- Result: [Uploading 11. Ordering by cost DESC to see highest cost methods.csv"order_priority","ship_mode","total_shipping_cost_for_priority","number_of_orders_for_priority_ship_mode"
 "Critical","Delivery Truck","10783.82","228"
 "Critical","Regular Air","8586.76","1180"
 "Critical","Express Air","1742.10","200"
